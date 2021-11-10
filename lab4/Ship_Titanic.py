@@ -16,6 +16,7 @@ GREEN = (  0, 255,   0)
 RED =   (255,   0,   0)
 CYAN = (128, 166, 255)
 YELLOW = (255, 255, 0)
+YELLOW2 = (255, 170, 0)
 BROWN = (150, 75, 0)
 BEJEV = (245, 245, 220)
 ORANGE = (255, 128, 0)
@@ -37,17 +38,17 @@ def build_picture():
 def surroundings():
     rect(screen, CYAN, (0, 0, 600, 186))
     rect(screen, BLUE, (0, 186, 600, 92))
-    rect(screen, YELLOW, (0, 278, 600, 122))
+    rect(screen, YELLOW2, (0, 278, 600, 122))
     circle(screen, YELLOW, (537, 55), 40)
 def beach():
     for i in range(1,20):
-        ellipse(screen, YELLOW, (30*(2*i-2),270.5,30,15))
+        ellipse(screen, YELLOW2, (30*(2*i-2),270.5,30,15))
         ellipse(screen, BLUE, (30*(2*i -1),270.5,30,15))
 def ship():
 
     surface_ship = pygame.Surface((260,150))
     surface_ship.fill(GREEN)
-    surface_ship.set_colorkey((GREEN))
+    surface_ship.set_colorkey(GREEN)
 
     circle(surface_ship, BROWN,(42, 105), 30, width = 0, draw_top_right= False,
            draw_top_left= False, draw_bottom_left= True)
@@ -65,23 +66,47 @@ def ship():
 
     surface_ship = pygame.transform.rotate(surface_ship, angle)
 
-    if angle == 0:
-        y = 100
-    else:
-        y = 50
-    screen.blit(surface_ship, (310, y))
+    screen.blit(surface_ship, (310, 100))
 
 def umbrella():
-    rect(screen, ORANGE, (92, 235, 7, 150))
-    polygon(screen, RED, [[27, 265], [164, 265],[92, 235],[99,235]])
-    rect(screen, RED, (92, 235, 7, 30))
-    rect(screen, BROWN, (92, 235, 7, 31), width = 1)
-    line(screen, BLACK, (92, 238), (45, 265))
-    line(screen, BLACK, (92, 238), (65, 265))
-    line(screen, BLACK, (92, 238), (80, 265))
-    line(screen, BLACK, (99, 238), (111, 265))
-    line(screen, BLACK, (99, 238), (131, 265))
-    line(screen, BLACK, (99, 238), (151, 265))
+
+    surface_umbrella = pygame.Surface((150,160))
+    surface_umbrella.fill(BROWN)
+    surface_umbrella.set_colorkey(BROWN)
+
+    rect(surface_umbrella, ORANGE, (72, 5, 7, 150))
+    polygon(surface_umbrella, RED, [[7, 35], [144, 35],[72, 5],[79,5]])
+    rect(surface_umbrella, RED, (72, 5, 7, 30))
+    rect(surface_umbrella, BROWN, (72, 5, 7, 31), width = 1)
+    line(surface_umbrella, BLACK, (72, 8), (25, 35))
+    line(surface_umbrella, BLACK, (72, 8), (45, 35))
+    line(surface_umbrella, BLACK, (72, 8), (60, 35))
+    line(surface_umbrella, BLACK, (79, 8), (91, 35))
+    line(surface_umbrella, BLACK, (79, 8), (111, 35))
+    line(surface_umbrella, BLACK, (79, 8), (131, 35))
+
+    surface_umbrella2 = surface_umbrella.copy()
+    surface_umbrella2 = pygame.transform.rotozoom(surface_umbrella2, 0, 0.5)
+    surface_umbrella2.set_colorkey(BROWN)
+
+    surface_umbrella3 = surface_umbrella.copy()
+    surface_umbrella3 = pygame.transform.rotozoom(surface_umbrella3, 0, 0.7)
+    surface_umbrella3.set_colorkey(BROWN)
+
+    surface_umbrella4 = surface_umbrella.copy()
+    surface_umbrella4 = pygame.transform.rotozoom(surface_umbrella4, 0, 0.5)
+    surface_umbrella4.set_colorkey(BROWN)
+
+    surface_umbrella5 = surface_umbrella.copy()
+    surface_umbrella5 = pygame.transform.rotozoom(surface_umbrella5, 0, 0.7)
+    surface_umbrella5.set_colorkey(BROWN)
+
+    screen.blit(surface_umbrella, (20, 230))
+    screen.blit(surface_umbrella2, (150, 230))
+    screen.blit(surface_umbrella3, (300, 270))
+    screen.blit(surface_umbrella4, (450, 230))
+    screen.blit(surface_umbrella5, (500, 260))
+
 def clouds():
     circle(screen, WHITE, (130, 45), 13)
     circle(screen, BLACK, (130, 45), 13, width = 1)
@@ -147,7 +172,8 @@ def sunbeams():
     a = 537
     b = 15
     for i in range(1, n):
-        polygon(screen, YELLOW, [[a, b], [a + cos((pi - alpha) / 2) * x, b + sin((pi - alpha) / 2) * x], [a + cos((pi - alpha) / 2) * x, b - sin((pi - alpha) / 2) * x]])
+        polygon(screen, YELLOW, [[a, b], [a + cos((pi - alpha) / 2) * x, b + sin((pi - alpha)
+                                    / 2) * x], [a + cos((pi - alpha) / 2) * x, b - sin((pi - alpha) / 2) * x]])
         a += sin((pi - alpha) / 2) * x
         b += cos((pi - alpha) / 2) * x
 
