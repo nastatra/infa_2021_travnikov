@@ -21,7 +21,7 @@ HEIGHT = 600
 
 
 class Ball:
-    def _init_(self, screen: pygame.Surface, x=40, y=450):
+    def __init__(self, screen: pygame.Surface, x=40, y=450):
         """ Конструктор класса ball
 
         Args:
@@ -82,7 +82,7 @@ class Ball:
             return False
 
 class Gun:
-    def _init_(self, screen):
+    def __init__(self, screen):
         self.screen = screen
         self.f2_power = 10
         self.f2_on = 0
@@ -146,7 +146,7 @@ class Gun:
 
 
 class Target:
-    def _init_(self, screen):
+    def __init__(self, screen):
         self.screen = screen
         self.points = 0
         self.live = 1
@@ -167,7 +167,7 @@ class Target:
     def draw(self):
         """Рисование цели."""
         pygame.draw.circle(self.screen, self.color, (self.x, self.y), self.r)
-        pygame.draw.circle(self.screen, BLACK, (self.x, self.y), self.r, width = 1)
+        pygame.draw.circle(self.screen, BLACK, (self.x, self.y), self.r, width=1)
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
